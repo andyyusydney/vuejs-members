@@ -1,7 +1,14 @@
 <template>
-  <main>
-    <section v-if="!isLoaded">
-      <button @click="loadMembersData" :disabled="loading">
+  <main class="px-4 mb-4 lg:px-16 h-full">
+    <section
+      v-if="!isLoaded"
+      class="flex flex-col h-full items-center justify-center text-base text-center"
+    >
+      <button
+        @click="loadMembersData"
+        :disabled="loading"
+        class="bg-emerald-800 hover:bg-emerald-700 active:bg-emerald-900 text-white px-12 py-4 font-semibold rounded-2xl"
+      >
         <span>Load Members</span>
       </button>
     </section>

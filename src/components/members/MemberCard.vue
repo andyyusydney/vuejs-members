@@ -1,16 +1,22 @@
 <template>
-  <div>
-    <div>
-      <div>{{ nameTag }}</div>
-      <div>
-        <h2>{{ name }}</h2>
-        <p>Member for {{ memberDuration }} days</p>
+  <article
+    class="w-full p-6 text-gray-800 bg-white border border-neutral-100 rounded-2xl shadow-[0px_4px_4px_0px_#00000040]"
+  >
+    <section class="flex mb-4">
+      <div
+        class="w-16 h-16 min-w-64 text-2xl rounded-full bg-blue-500 flex items-center justify-center mr-6"
+      >
+        {{ nameTag }}
       </div>
-    </div>
-    <div>
+      <header>
+        <h2 class="text-xl line-clamp-1">{{ name }}</h2>
+        <p class="text-sm line-clamp-1">Member for {{ memberDuration }} days</p>
+      </header>
+    </section>
+    <section class="text-base line-clamp-2">
       <p>{{ member.lastMessage }}</p>
-    </div>
-  </div>
+    </section>
+  </article>
 </template>
 
 <script lang="ts">

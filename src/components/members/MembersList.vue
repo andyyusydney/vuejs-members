@@ -1,12 +1,18 @@
 <template>
   <section>
-    <p v-if="members.length > 0">
-      Found {{ members.length }} members with an average age of {{ averageAge }}
-    </p>
-    <p v-else>Found 0 members</p>
+    <div class="text-lg font-semibold mt-8 mb-4">
+      <p v-if="members.length > 0">
+        Found {{ members.length }} members with an average age of
+        {{ averageAge }}
+      </p>
+      <p v-else>Found 0 members</p>
+    </div>
 
-    <ul v-if="members.length > 0">
-      <li v-for="member in members" :key="member.id">
+    <ul
+      v-if="members.length > 0"
+      class="grid grid-flow-row grid-cols-1 sm:grid-cols-3 gap-4"
+    >
+      <li v-for="member in members" :key="member.id" class="last:mb-4">
         <MemberCard :member="member" />
       </li>
     </ul>
