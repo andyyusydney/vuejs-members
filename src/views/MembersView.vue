@@ -1,5 +1,5 @@
 <template>
-  <main class="px-4 lg:px-16 h-full">
+  <main :class="{ 'h-full': !isLoaded }" class="px-4 lg:px-16">
     <section
       v-if="!isLoaded"
       class="flex flex-col h-full items-center justify-center text-base text-center"
