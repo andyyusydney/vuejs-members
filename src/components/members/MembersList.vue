@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import MemberCard from "./MembersCard.vue";
+import MemberCard from "./MemberCard.vue";
 import { Member } from "@/services/members";
 
 @Component({
