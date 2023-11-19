@@ -4,6 +4,7 @@
   >
     <section class="flex mb-4">
       <div
+        :style="{ backgroundColor: nameTagColor }"
         class="w-16 h-16 min-w-64 text-2xl rounded-full bg-blue-500 flex items-center justify-center mr-6"
       >
         {{ nameTag }}
@@ -22,6 +23,8 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { Member } from "@/services/members";
+import { mapInitialsToHexColour } from "@/utils/colours";
+import { getDaysDifference, getNameInitials } from "@/utils/utils";
 
 @Component({
   components: {},
@@ -34,13 +37,17 @@ export default class MemberCard extends Vue {
   }
 
   get memberDuration() {
-    const timeDifference =
-      new Date().getTime() - new Date(this.member.joinedAt).getTime();
-    return Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    return getDaysDifference(new Date(), new Date(this.member.joinedAt));
   }
 
   get nameTag() {
     return `${this.member.firstName[0].toUpperCase()}${this.member.lastName[0].toUpperCase()}`;
+  }
+
+  get nameTagColor() {
+    return mapInitialsToHexColour(
+      getNameInitials(this.member.firstName, this.member.lastName)
+    );
   }
 }
 </script>
