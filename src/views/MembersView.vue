@@ -7,6 +7,7 @@
     </section>
 
     <members-list v-else :members="members" />
+    <div v-if="errorMessage" class="text-red-500">{{ errorMessage }}</div>
   </main>
 </template>
 
@@ -26,14 +27,17 @@ export default class MembersView extends Vue {
   @Action("loadMembers") private readonly loadMembers!: () => Promise<void>;
   private loading: boolean = false;
   private isLoaded: boolean = false;
+  private errorMessage: string = "";
 
   private async loadMembersData() {
     try {
       this.loading = true;
       await this.loadMembers();
       this.isLoaded = true;
+      this.errorMessage = "";
     } catch (error) {
       console.error("Error loading members:", error);
+      this.errorMessage = "An error occurred while loading members.";
     } finally {
       this.loading = false;
     }
