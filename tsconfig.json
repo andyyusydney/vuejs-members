@@ -20,7 +20,8 @@
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
   "vueCompilerOptions": {
-    "target": 2
+    "target": 2,
+    "experimentalUseElementAccessInTemplate": true
   },
   "include": [
     "src/**/*.ts",
