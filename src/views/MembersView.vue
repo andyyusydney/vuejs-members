@@ -12,8 +12,9 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import MembersService, { Member } from "@/services/members";
+import { Member } from "@/services/members";
 import MembersList from "@/components/members/MembersList.vue";
+import { Action, State } from "vuex-class";
 
 @Component({
   components: {
@@ -21,14 +22,15 @@ import MembersList from "@/components/members/MembersList.vue";
   },
 })
 export default class MembersView extends Vue {
-  private members: Member[] = [];
+  @State("members") private readonly members!: Member[];
+  @Action("loadMembers") private readonly loadMembers!: () => Promise<void>;
   private loading: boolean = false;
   private isLoaded: boolean = false;
 
   private async loadMembersData() {
     try {
       this.loading = true;
-      this.members = await MembersService.loadMembers();
+      await this.loadMembers();
       this.isLoaded = true;
     } catch (error) {
       console.error("Error loading members:", error);
